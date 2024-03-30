@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Management Tool</title>
+<style>
+/* Add your CSS styles here */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Add more styles as needed */
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Project Management Tool</h1>
+  <form id="projectForm">
+    <!-- Add form fields for project creation -->
+    <label for="projectName">Project Name:</label>
+    <input type="text" id="projectName" required>
+    <label for="managerName">Manager Name:</label>
+    <input type="text" id="managerName" required>
+    <button type="submit">Create Project</button>
+  </form>
+
+  <div id="teamMembers">
+    <!-- Team members will be dynamically added here -->
+  </div>
+
+  <div id="taskAllocation">
+    <!-- Task allocation section -->
+  </div>
+
+  <div id="taskStatus">
+    <!-- Task status section -->
+  </div>
+</div>
+
+<script>
+// Add JavaScript functionality here
+document.getElementById("projectForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  var projectName = document.getElementById("projectName").value;
+  var managerName = document.getElementById("managerName").value;
+  // Send data to backend for project creation
+  // Example: Using fetch API to send data to server
+  fetch('/createProject', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ projectName: projectName, managerName: managerName }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    // Add team members dynamically
+    // Update UI as needed
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+});
+</script>
+
+</body>
+</html>
